@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import workoutsReducer from './store/reducers/workouts'
 import WorkoutNavigator from './navigation/WorkoutNavigator'
 
+//Map the workouts stored in the reducer redux
 const rootReducer = combineReducers({
   workouts: workoutsReducer
 });
