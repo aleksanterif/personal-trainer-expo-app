@@ -2,7 +2,7 @@ import React from "react";
 import { FlatList } from "react-native";
 //ability to tap into redux store and fetch all the workouts from there
 import { useSelector } from "react-redux";
-import WorkoutCard from "../../components/workouts/WorkoutCard"
+import WorkoutCard from "../../components/workouts/WorkoutCard";
 
 const WorkoutsMainScreen = (props) => {
     const workouts = useSelector((state) => state.workouts.availableWorkouts);
@@ -14,7 +14,12 @@ const WorkoutsMainScreen = (props) => {
                 <WorkoutCard
                     image={itemData.item.imageUrl}
                     title={itemData.item.title}
-                    viewDetail={() => { }}
+                    viewDetail={() => {
+                        props.navigation.navigate("WorkoutDetails", {
+                            workoutId: itemData.item.id,
+                            workoutTitle: itemData.item.title
+                        });
+                    }}
                     addToChosenWorkouts={() => { }}
                 />
             )}

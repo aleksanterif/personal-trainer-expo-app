@@ -1,18 +1,21 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Button } from "react-native";
+import { View, Text, Image, StyleSheet, Button, TouchableNativeFeedback } from "react-native";
 import Colors from '../../styles/Colors'
 
 
 const WorkoutCard = (props) => {
+
     return (
-        <View style={styles.workout}>
-            <Image style={styles.image} source={{ uri: props.image }} />
-            <Text style={styles.title}> {props.title}</Text>
-            <View style={styles.buttons}>
-                <Button color={Colors.secondary} title="View details" onPress={props.viewDetail} />
-                <Button color={Colors.secondary} title="This could be in my workout" onPress={props.addToChosenWorkouts} />
+        <TouchableNativeFeedback onPress={props.viewDetail}>
+            <View style={styles.workout}>
+                <Image style={styles.image} source={{ uri: props.image }} />
+                <Text style={styles.title}> {props.title}</Text>
+                <View style={styles.buttons}>
+                    <Button color={Colors.secondary} title="View details" onPress={props.viewDetail} />
+                    <Button color={Colors.secondary} title="This could be in my workout" onPress={props.addToChosenWorkouts} />
+                </View>
             </View>
-        </View>
+        </TouchableNativeFeedback>
     );
 };
 
