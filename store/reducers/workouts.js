@@ -6,6 +6,7 @@ const initialState = {
     userWorkouts: WORKOUTS.filter(workout => workout.creatorId === 'VanDam12')
 };
 
+
 export default (state = initialState, action) => {
     return state
 };
