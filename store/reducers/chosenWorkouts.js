@@ -1,4 +1,4 @@
-import { ADD_TO_CHOSENWORKOUTS } from "../actions/chosenWorkouts";
+import { ADD_TO_CHOSENWORKOUTS, REMOVE_FROM_CHOSENWORKOUTS } from "../actions/chosenWorkouts";
 import ChosenWorkout from "../../models/chosenWorkout";
 
 const initialState = {
@@ -13,21 +13,18 @@ export default (state = initialState, action) => {
             const addedWorkout = action.workout;
             const workoutTitle = addedWorkout.title;
 
-            if (state.workouts[addedWorkout.id]) {
-                //if we already have chosen the workout
-                const updatedWorkout = new ChosenWorkout(
-                    state.workouts[addedWorkout.id].title
-                )
-                return {
-                    ...state,
-                    workouts: { ...state.workouts, [addedWorkout.id]: updatedWorkout },
-                };
-            } else {
-                const newChosenWorkout = new ChosenWorkout(workoutTitle);
-                return {
-                    ...state,
-                    workouts: { ...state.workouts, [addedWorkout.id]: newChosenWorkout },
-                };
+            const newChosenWorkout = new ChosenWorkout(workoutTitle);
+            return {
+                ...state,
+                workouts: { ...state.workouts, [addedWorkout.id]: newChosenWorkout },
+            };
+
+        case REMOVE_FROM_CHOSENWORKOUTS:
+            const updatedChosenWorkouts = { ...state.workouts }
+            delete updatedChosenWorkouts[action.wid]
+            return {
+                ...state,
+                workouts: updatedChosenWorkouts
             }
     }
     return state;

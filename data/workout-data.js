@@ -18,9 +18,17 @@ const WORKOUTS = [
     new Workout(
         '123',
         'VanDam12',
-        'Basic squat',
+        'Squat',
         'https://physiolounge.co.uk/wp-content/uploads/2017/05/squat.jpg',
         'An image of how a squat up should be done, repeat this exercise 5x10 times with 1min pauses'
+    )
+    ,
+    new Workout(
+        '125',
+        'VanDam12',
+        'Ab crunch',
+        'https://www.popworkouts.com/wp-content/uploads/2012/12/upper-body-crunches.jpg',
+        'Start and end of an ab crunch'
     )
 ];
 

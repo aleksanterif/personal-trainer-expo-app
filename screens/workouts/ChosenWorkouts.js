@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, FlatList, Button, StyleSheet } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import SelectedWorkouts from "../../components/workouts/SelectedWorkouts";
+import * as chosenWorkoutActions from "../../store/actions/chosenWorkouts"
 
 const ChosenWorkouts = (props) => {
     const workoutItems = useSelector((state) => {
@@ -16,6 +17,7 @@ const ChosenWorkouts = (props) => {
     });
 
 
+    const dispatch = useDispatch()
     return (
         <View style={styles.screen}>
             <View style={styles.button}>
@@ -26,7 +28,9 @@ const ChosenWorkouts = (props) => {
                     data={workoutItems}
                     keyExtractor={(item) => item.workoutId}
                     renderItem={(itemData) => (
-                        <SelectedWorkouts title={itemData.item.title} remove={() => { }} />
+                        <SelectedWorkouts title={itemData.item.title} remove={() => {
+                            dispatch(chosenWorkoutActions.removeFromChosenWorkouts(itemData.item.workoutId))
+                        }} />
                     )}
                 />
             </View>
