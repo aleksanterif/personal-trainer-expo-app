@@ -27,6 +27,8 @@ const ChosenWorkouts = (props) => {
                     renderItem={(itemData) => (
                         <SelectedWorkouts
                             title={itemData.item.title}
+                            description={itemData.item.description}
+                            delete
                             remove={() => {
                                 dispatch(
                                     chosenWorkoutActions.removeFromChosenWorkouts(
@@ -40,7 +42,7 @@ const ChosenWorkouts = (props) => {
             </View>
             <View style={styles.button}>
                 <Button
-                    title="Create a workout"
+                    title="Create a workout session"
                     disabled={workoutItems.length === 0}
                     onPress={() => {
                         dispatch(sessionActions.addSession(workoutItems));

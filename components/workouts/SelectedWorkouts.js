@@ -11,9 +11,11 @@ const SelectedWorkouts = props => {
             </Text>
             {/* this touchablefeedback onPress event needs to be forwarded to the component that uses this cardholder */}
             <View styles={styles.button}>
-                <TouchableNativeFeedback onPress={props.remove}>
-                    <MaterialCommunityIcons name='alpha-x-box' color={'red'} size={30} />
-                </TouchableNativeFeedback>
+                {props.delete &&
+                    <TouchableNativeFeedback onPress={props.remove}>
+                        <MaterialCommunityIcons name='alpha-x-box' color={'red'} size={30} />
+                    </TouchableNativeFeedback>
+                }
             </View>
         </View>
     )

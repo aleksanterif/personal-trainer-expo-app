@@ -13,7 +13,7 @@ const SessionsScreen = props => {
     return (
         <FlatList
             data={sessions}
-            renderItem={({ item }) => <SessionWorkouts date={item.formattedDate} />}
+            renderItem={({ item }) => <SessionWorkouts date={item.formattedDate} workouts={item.workouts} />}
         />
     )
 }
