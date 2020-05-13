@@ -9,11 +9,16 @@ const WorkoutCard = (props) => {
         <TouchableNativeFeedback onPress={props.viewDetail}>
             <View style={styles.workout}>
                 <Image style={styles.image} source={{ uri: props.image }} />
-                <Text style={styles.title}> {props.title}</Text>
-                <View style={styles.buttons}>
-                    <Button color={Colors.secondary} title="View details" onPress={props.viewDetail} />
-                    <Button color={Colors.secondary} title="This could be in my workout" onPress={props.addToChosenWorkouts} />
+                <View>
+                    <Text style={styles.title}> {props.title}</Text>
+                    {props.infoscreen && <Text style={styles.description}>{props.description}</Text>}
                 </View>
+                {props.mainscreen &&
+                    <View style={styles.buttons}>
+                        <Button color={Colors.secondary} title="View details" onPress={props.viewDetail} />
+                        <Button color={Colors.secondary} title="This could be in my workout" onPress={props.addToChosenWorkouts} />
+                    </View>
+                }
             </View>
         </TouchableNativeFeedback>
     );
@@ -46,6 +51,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+    },
+    description: {
+        fontSize: 17
+
     }
 });
 

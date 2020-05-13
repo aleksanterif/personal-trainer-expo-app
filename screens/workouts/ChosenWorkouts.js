@@ -12,6 +12,8 @@ const ChosenWorkouts = (props) => {
             transformedWorkoutItems.push({
                 workoutId: key,
                 title: state.chosenWorkouts.workouts[key].workoutTitle,
+                description: state.chosenWorkouts.workouts[key].description,
+                image: state.chosenWorkouts.workouts[key].imageUrl
             });
         }
         return transformedWorkoutItems;
@@ -27,7 +29,6 @@ const ChosenWorkouts = (props) => {
                     renderItem={(itemData) => (
                         <SelectedWorkouts
                             title={itemData.item.title}
-                            description={itemData.item.description}
                             delete
                             remove={() => {
                                 dispatch(

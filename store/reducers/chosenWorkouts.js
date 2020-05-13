@@ -13,8 +13,10 @@ export default (state = initialState, action) => {
         case ADD_TO_CHOSENWORKOUTS:
             const addedWorkout = action.workout;
             const workoutTitle = addedWorkout.title;
+            const workoutImage = addedWorkout.imageUrl;
+            const workoutDescription = addedWorkout.description;
 
-            const newChosenWorkout = new ChosenWorkout(workoutTitle);
+            const newChosenWorkout = new ChosenWorkout(workoutTitle, workoutImage, workoutDescription);
             return {
                 ...state,
                 workouts: { ...state.workouts, [addedWorkout.id]: newChosenWorkout },

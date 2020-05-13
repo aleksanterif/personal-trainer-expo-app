@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
-import SelectedWorkouts from "./SelectedWorkouts";
+import WorkoutCard from "./WorkoutCard";
 
 const SessionWorkouts = (props) => {
     const [open, setOpen] = useState(false);
@@ -9,11 +9,11 @@ const SessionWorkouts = (props) => {
     return (
         <View style={styles.sessionWorkouts}>
             <View style={styles.summary}>
-                <Text>Workout date</Text>
-                <Text style={styles.date}>{props.date}</Text>
+                <Text style={styles.text}>Workout date</Text>
+                <Text style={styles.text}>{props.date}</Text>
             </View>
             <Button
-                title="details"
+                title="workout details"
                 onPress={() => {
                     //this way we can manage state both ways
                     setOpen((prevState) => !prevState);
@@ -22,7 +22,13 @@ const SessionWorkouts = (props) => {
             {open && (
                 <View>
                     {props.workouts.map((selectedWorkouts) => (
-                        <SelectedWorkouts key={selectedWorkouts.workoutId} title={selectedWorkouts.title} />
+                        <WorkoutCard
+                            key={selectedWorkouts.workoutId}
+                            title={selectedWorkouts.title}
+                            image={selectedWorkouts.image}
+                            description={selectedWorkouts.description}
+                            infoscreen
+                        />
                     ))}
                 </View>
             )}
@@ -44,7 +50,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: "100%",
     },
-    date: {
+    text: {
         fontSize: 20,
         color: "black",
     },

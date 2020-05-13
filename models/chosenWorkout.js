@@ -1,6 +1,8 @@
 class ChosenWorkout {
-    constructor(workoutTitle) {
-        this.workoutTitle = workoutTitle
+    constructor(workoutTitle, imageUrl, description) {
+        this.workoutTitle = workoutTitle;
+        this.imageUrl = imageUrl;
+        this.description = description;
     }
 }
 

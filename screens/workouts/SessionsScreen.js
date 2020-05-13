@@ -9,7 +9,6 @@ const SessionsScreen = props => {
     //first session is from the app.js where we combine all redux states
     //second one is from redux reducers the "real" sessions list
     const sessions = useSelector(state => state.sessions.sessions);
-    console.log(sessions)
     return (
         <FlatList
             data={sessions}
@@ -20,8 +19,8 @@ const SessionsScreen = props => {
 
 SessionsScreen.navigationOptions = navData => {
     return {
-        headerTitle: 'Your sessions',
-        headerLeft: <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        headerTitle: 'Your workout sessions',
+        headerLeft: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
             <Item title='HamburgerMenu' iconName={'chevron-double-right'} onPress={() => { navData.navigation.toggleDrawer() }} />
         </HeaderButtons>
 

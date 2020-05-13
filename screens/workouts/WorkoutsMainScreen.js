@@ -16,6 +16,7 @@ const WorkoutsMainScreen = (props) => {
             keyExtractor={(item) => item.id}
             renderItem={(itemData) => (
                 <WorkoutCard
+                    mainscreen
                     image={itemData.item.imageUrl}
                     title={itemData.item.title}
                     viewDetail={() => {
@@ -37,7 +38,7 @@ const WorkoutsMainScreen = (props) => {
 WorkoutsMainScreen.navigationOptions = navData => {
     return {
         headerTitle: "All workouts",
-        headerLeft: <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        headerLeft: () => <HeaderButtons HeaderButtonComponent={HeaderButton}>
             <Item title='HamburgerMenu' iconName={'chevron-double-right'} onPress={() => { navData.navigation.toggleDrawer() }} />
         </HeaderButtons>,
         headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
