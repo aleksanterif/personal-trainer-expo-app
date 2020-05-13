@@ -1,5 +1,6 @@
 import { ADD_TO_CHOSENWORKOUTS, REMOVE_FROM_CHOSENWORKOUTS } from "../actions/chosenWorkouts";
 import ChosenWorkout from "../../models/chosenWorkout";
+import { ADD_SESSION } from "../actions/sessions";
 
 const initialState = {
     workouts: {},
@@ -26,6 +27,9 @@ export default (state = initialState, action) => {
                 ...state,
                 workouts: updatedChosenWorkouts
             }
+        //with this we can reset the chosen workouts
+        case ADD_SESSION:
+            return initialState;
     }
     return state;
 };

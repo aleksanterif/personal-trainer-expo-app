@@ -5,11 +5,13 @@ import { Provider } from 'react-redux';
 import workoutsReducer from './store/reducers/workouts'
 import WorkoutNavigator from './navigation/WorkoutNavigator'
 import chosenWorkoutsReducer from './store/reducers/chosenWorkouts'
+import sessionReducer from './store/reducers/sessions'
 
 //Map and combine the workouts stored in the reducer redux, contains the whole "big state"
 const rootReducer = combineReducers({
   workouts: workoutsReducer,
-  chosenWorkouts: chosenWorkoutsReducer
+  chosenWorkouts: chosenWorkoutsReducer,
+  sessions: sessionReducer
 });
 
 const store = createStore(rootReducer);
