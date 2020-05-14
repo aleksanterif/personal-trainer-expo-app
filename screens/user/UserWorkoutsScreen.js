@@ -10,6 +10,9 @@ const UserWorkoutsScreen = (props) => {
   const userWorkouts = useSelector((state) => state.workouts.userWorkouts);
   const dispatch = useDispatch();
   console.log(userWorkouts);
+  const editWorkout = (id) => {
+    props.navigation.navigate("EditWorkout", { workoutId: id });
+  };
 
   return (
     <FlatList
@@ -24,7 +27,9 @@ const UserWorkoutsScreen = (props) => {
           delete={() => {
             dispatch(userWorkoutsActions.deleteWorkout(item.id));
           }}
-          edit={() => {}}
+          edit={() => {
+            editWorkout(item.id);
+          }}
         />
       )}
     />
@@ -41,6 +46,17 @@ UserWorkoutsScreen.navigationOptions = (navData) => {
           iconName={"chevron-double-right"}
           onPress={() => {
             navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Add"
+          iconName={"bolnisi-cross"}
+          onPress={() => {
+            navData.navigation.navigate("AddWorkout");
           }}
         />
       </HeaderButtons>

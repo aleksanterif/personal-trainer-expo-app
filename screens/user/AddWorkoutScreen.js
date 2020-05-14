@@ -3,22 +3,16 @@ import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import * as workoutActions from "../../store/actions/workouts";
 import Colors from "../../styles/Colors";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import HeaderButton from "../../components/workouts/WorkoutIcon";
 
-const EditWorkoutScreen = (props) => {
-  const workoutId = props.navigation.getParam("workoutId");
-  const editedWorkout = useSelector((state) =>
-    state.workouts.userWorkouts.find((workout) => workout.id === workoutId)
-  );
+const AddWorkoutScreen = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [url, setUrl] = useState("");
 
-  const [title, setTitle] = useState(editedWorkout.title);
-  const [description, setDescription] = useState(editedWorkout.description);
-  const [url, setUrl] = useState(editedWorkout.imageUrl);
   const dispatch = useDispatch();
 
   const submit = () => {
-    dispatch(workoutActions.updateWorkout(workoutId, title, description, url));
+    dispatch(workoutActions.createWorkout(title, description, url));
   };
 
   return (
@@ -54,9 +48,9 @@ const EditWorkoutScreen = (props) => {
   );
 };
 
-EditWorkoutScreen.navigationOptions = (navData) => {
+AddWorkoutScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: "Editing",
+    headerTitle: "Add a single new workout",
   };
 };
 
@@ -80,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditWorkoutScreen;
+export default AddWorkoutScreen;

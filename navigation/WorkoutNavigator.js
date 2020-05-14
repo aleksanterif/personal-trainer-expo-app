@@ -1,12 +1,13 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { createDrawerNavigator } from "react-navigation-drawer";
-import { createBottomTabNavigator } from "react-navigation-tabs";
 import WorkoutsMainScreen from "../screens/workouts/WorkoutsMainScreen";
 import WorkoutDetailsScreen from "../screens/workouts/WorkoutDetailsScreen";
 import ChosenWorkouts from "../screens/workouts/ChosenWorkouts";
 import SessionsScreen from "../screens/workouts/SessionsScreen";
 import UserWorkoutsScreen from "../screens/user/UserWorkoutsScreen";
+import EditWorkoutScreen from "../screens/user/EditWorkoutsScreen";
+import AddWorkoutScreen from "../screens/user/AddWorkoutScreen";
 import Colors from "../styles/Colors";
 
 const WorkoutsNavigator = createStackNavigator(
@@ -43,6 +44,8 @@ const SessionsNavigator = createStackNavigator(
 const UserNavigator = createStackNavigator(
   {
     UserWorkouts: UserWorkoutsScreen,
+    EditWorkout: EditWorkoutScreen,
+    AddWorkout: AddWorkoutScreen,
   },
   {
     defaultNavigationOptions: {
