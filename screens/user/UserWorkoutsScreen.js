@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/workouts/WorkoutIcon";
@@ -9,9 +9,21 @@ import * as userWorkoutsActions from "../../store/actions/workouts";
 const UserWorkoutsScreen = (props) => {
   const userWorkouts = useSelector((state) => state.workouts.userWorkouts);
   const dispatch = useDispatch();
-  console.log(userWorkouts);
   const editWorkout = (id) => {
     props.navigation.navigate("EditWorkout", { workoutId: id });
+  };
+
+  const removeWorkout = (item) => {
+    Alert.alert("", "Do you really want to remove " + item.title + "?", [
+      {
+        text: "Cancel",
+        style: "Default",
+      },
+      {
+        text: "OK",
+        onPress: () => dispatch(userWorkoutsActions.deleteWorkout(item.id)),
+      },
+    ]);
   };
 
   return (
@@ -25,7 +37,7 @@ const UserWorkoutsScreen = (props) => {
           title={item.title}
           description={item.description}
           delete={() => {
-            dispatch(userWorkoutsActions.deleteWorkout(item.id));
+            removeWorkout(item);
           }}
           edit={() => {
             editWorkout(item.id);

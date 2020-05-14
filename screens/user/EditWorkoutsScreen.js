@@ -3,8 +3,6 @@ import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import * as workoutActions from "../../store/actions/workouts";
 import Colors from "../../styles/Colors";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import HeaderButton from "../../components/workouts/WorkoutIcon";
 
 const EditWorkoutScreen = (props) => {
   const workoutId = props.navigation.getParam("workoutId");
@@ -41,7 +39,7 @@ const EditWorkoutScreen = (props) => {
       </View>
       <View>
         <Text style={styles.title}>
-          Imageurl (for example https://pictureofmydog.com)
+          Imageurl (for example https://pictureofmydog.com/images/bordercollie)
         </Text>
         <TextInput
           style={styles.textInput}
@@ -49,7 +47,14 @@ const EditWorkoutScreen = (props) => {
           onChangeText={(input) => setUrl(input)}
         ></TextInput>
       </View>
-      <Button color={Colors.secondary} title="Save changes" onPress={submit} />
+      <Button
+        disabled={
+          title.length === 0 || description.length === 0 || url.length === 0
+        }
+        color={Colors.secondary}
+        title="Save changes"
+        onPress={submit}
+      />
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import * as workoutActions from "../../store/actions/workouts";
 import Colors from "../../styles/Colors";
@@ -12,7 +12,21 @@ const AddWorkoutScreen = () => {
   const dispatch = useDispatch();
 
   const submit = () => {
-    dispatch(workoutActions.createWorkout(title, description, url));
+    Alert.alert(
+      "",
+      "Are you sure, you want to create a new workout called " + title + "?",
+      [
+        {
+          text: "Cancel",
+          style: "Default",
+        },
+        {
+          text: "OK",
+          onPress: () =>
+            dispatch(workoutActions.createWorkout(title, description, url)),
+        },
+      ]
+    );
   };
 
   return (
@@ -43,7 +57,14 @@ const AddWorkoutScreen = () => {
           onChangeText={(input) => setUrl(input)}
         ></TextInput>
       </View>
-      <Button color={Colors.secondary} title="Save changes" onPress={submit} />
+      <Button
+        disabled={
+          title.length === 0 || description.length === 0 || url.length === 0
+        }
+        color={Colors.secondary}
+        title="Add a new workout"
+        onPress={submit}
+      />
     </View>
   );
 };
